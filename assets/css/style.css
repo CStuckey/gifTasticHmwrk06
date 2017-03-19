@@ -46,6 +46,11 @@ button {
   margin-top: 15px;
 }
 
+.sport {
+  margin: 2px;
+  float: left;
+}
+
 
 h1 {
   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;

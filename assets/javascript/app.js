@@ -37,10 +37,10 @@ function displayGiphyInfo() {
         var sportImage = $("<img>");
 
         // Give the image tag an src attribute of a property to pull off the result item
-        sportImage.attr("src", results[i].images.fixed_height_still.url);
+        sportImage.attr("src", results[i].images.fixed_width_still.url);
 
-        sportImage.attr("data-still", results[i].images.fixed_height_still.url);
-        sportImage.attr("data-animate", results[i].images);
+        sportImage.attr("data-still", results[i].images.fixed_width_still.url);
+        sportImage.attr("data-animate", results[i].images.fixed_width.url);
 
         // Display the rating
         sportsDiv.append(p);
@@ -76,6 +76,22 @@ function renderButtons() {
   }
 }
 
+// Function is to animate still giphies
+function still() {
+
+  var state = $(this).attr("data-state");
+
+  if (state === "still") {
+    var animate_url = $(this).attr("data_animate")
+    $(this).attr("src", animate_url);
+    $(this).attr("data-state", "animate");
+  } else {
+    var still_url = $(this).attr("data_still")
+    $(this).attr("src", still_url);
+    $(this).attr("data-state", "still");
+  }
+};
+
 // Function to handle events where sport button is clicked
 $("#add-button").on("click", function(event) {
         event.preventDefault();
@@ -91,6 +107,7 @@ $("#add-button").on("click", function(event) {
 
       // Adding a click event listener to all elements with a class of "movie"
       $(document).on("click", ".sport", displayGiphyInfo);
+      $(document).on("click", ".sport", still);
 
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
